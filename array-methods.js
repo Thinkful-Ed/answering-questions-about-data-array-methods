@@ -1,46 +1,32 @@
-function sumLengthOfStrings(arrayOfStrings) {
-  let totalLength = 0;
-
-  arrayOfStrings.forEach(string => {
-    totalLength += string.length;
+function stringsToNumbers(arrayOfStrings) {
+  // iterate over an array of strings
+  let arrayOfNumbers = arrayOfStrings.map( stringOfNumber => {
+    // convert each string into a number in a new array
+    return parseInt(stringOfNumber, 10);
   });
-
-  return totalLength;
+  // return the new array
+  return arrayOfNumbers;
 }
 
-function stringsToNumbers(numStrings) {
-  return numStrings.map(stringOfNumber => Number(stringOfNumber))
+function selectSubjectTeacher(arrayOfTeachers, subjectString) {
+  return arrayOfTeachers.find(teacher => teacher.subject === subjectString)
 }
 
-function removeOddNumbers(numbers) {
-  return numbers.filter(num => (num % 2 == 0))
+// write a function to remove null values from an array
+// the function accepts an array as a parameter
+function removeNull(responses) {
+  // check each value in the array, if its value is NOT null, add it to the new array
+  let noNulls = responses.filter( value => value !== null );
+  // return the new array without null values
+  return noNulls;
 }
 
-function putAndBetween(words) {
-  return words.join(' and ');
-}
-
-function selectSubjectTeacher(teachers, subject) {
-  return teachers.find(teacher => (teacher.subject === subject));
-}
-
-function isTop5EnglishCity(city) {
-  const top5Cities = ['Birmingham', 'Leeds', 'Sheffield', 'Manchester', 'Bradford'];
-  return top5Cities.includes(city);
-}
-
-function areAnyDogs(animals) {
-  return animals.some(animal => animal.species === 'C. lupus');
-}
-
-function didAllStudentsPass(students) {
-  if (!students.length) return false;
-
-  return students.every(student => student.testScore > 80);
-}
-
-function getFastestCar(cars) {
-  const sortedCars = cars.sort((carA, carB) => (carB.topSpeed - carA.topSpeed));
-
-  return sortedCars[0];
+function filterSurveys(arrayOfSurveyQuestions) {
+  // create a new surveys array of question objects
+  return arrayOfSurveyQuestions.map(question => {
+    // for each question object, alter the responses property by removing null values from the array
+    question.responses = removeNull(question.responses);
+    // return the altered question object to be added to the new surveys array
+    return question;
+  })
 }
